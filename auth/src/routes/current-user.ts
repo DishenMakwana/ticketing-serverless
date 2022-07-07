@@ -1,20 +1,17 @@
 import express, { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import catchAsync from '../middlewares/catch.async';
+
+import { currentUser } from '../middlewares/current-user';
+import { requireAuth } from '../middlewares/require-auth';
 
 const router = express.Router();
 
 router.get(
   '/api/users/currentuser',
-  catchAsync((req: Request, res: Response) => {
-    if (!req.session?.jwt) {
-      return res.send({ currentUser: null });
-    }
-
-    const payload = jwt.verify(req.session.jwt, process.env.JWT_KEY!);
-
-    res.send({ currentUser: payload });
-  })
+  currentUser,
+  requireAuth,
+  (req: Request, res: Response) => {
+    res.send({ currentUser: req.currentUser || null });
+  }
 );
 
 export { router as currentUserRouter };
