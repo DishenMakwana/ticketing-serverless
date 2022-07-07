@@ -1,5 +1,6 @@
 import express, { json } from 'express';
 import 'express-async-errors';
+import mongoose from 'mongoose';
 import { currentUserRouter } from './routes/current-user';
 import { signInRouter } from './routes/signin';
 import { signOutRouter } from './routes/signout';
@@ -21,6 +22,17 @@ app.all('*', async (req, res, next) => {
 
 app.use(errorHandler);
 
-app.listen(3000, () => {
-  console.log('Auth Listening on port 3000');
-});
+const start = async () => {
+  try {
+    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth');
+    console.log('Connect to MongoDB');
+  } catch (err) {
+    console.log('Mongo err: ', err);
+  }
+
+  app.listen(3000, () => {
+    console.log('Auth Listening on port 3000');
+  });
+};
+
+start();

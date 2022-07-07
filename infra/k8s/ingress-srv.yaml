@@ -14,6 +14,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: auth-depl 
+                name: auth-srv
                 port: 
                   number: 3000
