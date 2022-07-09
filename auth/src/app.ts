@@ -1,14 +1,12 @@
 import express, { json } from 'express';
 import 'express-async-errors';
-import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 
 import { currentUserRouter } from './routes/current-user';
 import { signInRouter } from './routes/signin';
 import { signOutRouter } from './routes/signout';
 import { signUpRouter } from './routes/signup';
-import { errorHandler } from './middlewares/error-handler';
-import { NotFoundError } from './errors/not-found-error';
+import { errorHandler, NotFoundError } from '@dishen/common';
 
 const app = express();
 app.set('trust proxy', true);
