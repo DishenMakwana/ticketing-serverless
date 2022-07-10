@@ -11,7 +11,7 @@
 - kubectl get pods
 - kubectl get services
 - kubectl get nodes
-- kubectl get deployments
+- kubectl get deploymentsgit push --set-upstream origin master
 - kubectl get namespaces
 
 - kubectl apply -f k8s-demo-deployment.yaml
