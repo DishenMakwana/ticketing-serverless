@@ -1,4 +1,5 @@
 ### Docker Commands
+
 - docker build -t markdown-docker-image .
 - docker push markdown-docker-image
 - docker logs #Container ID
@@ -6,6 +7,7 @@
 
 
 ### Kubernetes Commands
+
 - kubectl get pods
 - kubectl get services
 - kubectl get nodes
@@ -16,7 +18,14 @@
 - kubectl apply -f .
 
 - kubectl logs auth-depl
+
 - kubectl exec -it auth-depl sh
 - kubectl exec -it auth-depl -- sh
+
 - kubectl rollout restart deployment auth-depl
 - kubectl rollout status deployment auth-depl
+
+### Jest Testing Commands
+
+- npm run test
+- npm test ./filename
