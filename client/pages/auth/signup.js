@@ -19,8 +19,6 @@ export default () => {
     e.preventDefault();
 
     await doRequest();
-
-    Router.push('/');
   };
 
   return (
