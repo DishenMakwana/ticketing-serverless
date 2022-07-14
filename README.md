@@ -25,6 +25,8 @@
 - kubectl rollout restart deployment auth-depl
 - kubectl rollout status deployment auth-depl
 
+- kubectl port-forward <pod_name> internal_port:external_port
+
 ### Jest Testing Commands
 
 - npm run test
