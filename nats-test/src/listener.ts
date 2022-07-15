@@ -1,5 +1,6 @@
-import nats, { Message } from 'node-nats-streaming';
+import nats from 'node-nats-streaming';
 import { randomBytes } from 'crypto';
+import { TicketCreatedListener } from './events/ticket-created-listener';
 
 // console.clear();
 
@@ -15,25 +16,7 @@ stan.on('connect', () => {
     process.exit();
   });
 
-  const options = stan
-    .subscriptionOptions()
-    .setManualAckMode(true)
-    .setDeliverAllAvailable()
-    .setDurableName('accounting-service');
-
-  const subscription = stan.subscribe(
-    'ticket:created',
-    'order-service-queue-group',
-    options
-  );
-
-  subscription.on('message', (msg: Message) => {
-    console.log(
-      `Received event: #${msg.getSequence()}, with data ${msg.getData()}`
-    );
-
-    msg.ack();
-  });
+  new TicketCreatedListener(stan).listen();
 });
 
 process.on('SIGINT', () => stan.close());
