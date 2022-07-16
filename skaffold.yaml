@@ -4,7 +4,6 @@ deploy:
   kubectl:
     manifests:
       - ./infra/k8s/*
-
 build:
   local:
     push: false
@@ -17,7 +16,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: dishenmakwana/client
+    - image: dishenmakwana/ticketing-client
       context: client
       docker:
         dockerfile: Dockerfile

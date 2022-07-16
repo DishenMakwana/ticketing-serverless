@@ -13,8 +13,8 @@ spec:
         app: client
     spec:
       containers:
-      - name: client
-        image: dishenmakwana/client
+        - name: client
+          image: dishenmakwana/ticketing-client:0.0.1
 ---
 apiVersion: v1
 kind: Service

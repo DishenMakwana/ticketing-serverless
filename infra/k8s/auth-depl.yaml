@@ -13,16 +13,16 @@ spec:
         app: auth
     spec:
       containers:
-      - name: auth
-        image: dishenmakwana/auth
-        env :
-        - name: MONGO_URI
-          value: 'mongodb://auth-mongo-srv:27017/auth'
-        - name: JWT_KEY
-          valueFrom:
-            secretKeyRef:
-              name: jwt-secret
-              key: JWT_KEY
+        - name: auth
+          image: dishenmakwana/auth:0.0.1
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service
