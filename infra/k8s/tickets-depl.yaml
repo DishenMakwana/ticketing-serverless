@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: tickets
-          image: dishenmakwana/tickets:0.0.1
+          image: dishenmakwana/tickets
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
