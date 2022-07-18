@@ -1,5 +1,5 @@
-import { NotFoundError } from '@dishen/common';
 import express, { Request, Response } from 'express';
+import { NotFoundError } from '@dishen/common';
 import { Ticket } from '../models/ticket';
 
 const router = express.Router();
