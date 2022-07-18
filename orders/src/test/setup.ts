@@ -15,7 +15,6 @@ beforeAll(async () => {
 
   mongo = new MongoMemoryServer();
   await mongo.start();
-
   const mongoUri = await mongo.getUri();
 
   await mongoose.connect(mongoUri);
@@ -23,7 +22,6 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   jest.clearAllMocks();
-
   const collections = await mongoose.connection.db.collections();
 
   for (let collection of collections) {
