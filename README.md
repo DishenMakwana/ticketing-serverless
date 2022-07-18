@@ -33,3 +33,7 @@
 
 - npm run test
 - npm test ./filename
+
+### Skaffold Commands
+
+- skaffold dev
