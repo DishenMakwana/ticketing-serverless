@@ -11,7 +11,7 @@
 - kubectl get pods
 - kubectl get services
 - kubectl get nodes
-- kubectl get deploymentsgit push --set-upstream origin master
+- kubectl get deployments
 - kubectl get namespaces
 
 - kubectl apply -f k8s-demo-deployment.yaml
@@ -26,6 +26,8 @@
 - kubectl rollout status deployment auth-depl
 
 - kubectl port-forward <pod_name> internal_port:external_port
+
+- kubectl create secret generic jwt-secret --from-literal=jwt=asdf
 
 ### Jest Testing Commands
 
