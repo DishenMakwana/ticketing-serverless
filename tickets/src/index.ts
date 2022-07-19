@@ -45,13 +45,13 @@ const start = async () => {
     new OrderCancelledListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('Connect to MongoDB');
+    console.log('Ticket service Connect to MongoDB');
   } catch (err) {
-    console.log('Mongo err: ', err);
+    console.error('Ticket service Mongo err: ', err);
   }
 
   app.listen(3000, () => {
-    console.log('Auth Listening on port 3000');
+    console.log('Ticket service Listening on port 3000');
   });
 };
 

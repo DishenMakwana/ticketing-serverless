@@ -149,5 +149,5 @@ it('rejects updates if the ticket is reserved', async () => {
       title: 'new title',
       price: 100,
     })
-    .expect(200);
+    .expect(400);
 });
