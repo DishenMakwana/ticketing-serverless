@@ -1,4 +1,5 @@
 import { natsWrapper } from './nats-wrapper';
+import { orderCreatedListener } from './events/listeners/order-created-listener';
 
 const start = async () => {
   if (!process.env.NATS_CLIENT_ID) {
@@ -27,8 +28,10 @@ const start = async () => {
 
     process.on('SIGINT', () => natsWrapper.client.close());
     process.on('SIGTERM', () => natsWrapper.client.close());
+
+    new orderCreatedListener(natsWrapper.client).listen();
   } catch (err) {
-    console.error('Ticket service Mongo err: ', err);
+    console.error('Expiration service Mongo err: ', err);
   }
 };
 
