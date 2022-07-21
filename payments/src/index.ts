@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 
 import { app } from './app';
 import { natsWrapper } from './nats-wrapper';
+import { OrderCancelledListener } from './events/listeners/order-cancelled-listener';
+import { OrderCreatedListener } from './events/listeners/order-created-listener';
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -39,14 +41,17 @@ const start = async () => {
     process.on('SIGINT', () => natsWrapper.client.close());
     process.on('SIGTERM', () => natsWrapper.client.close());
 
+    new OrderCreatedListener(natsWrapper.client).listen();
+    new OrderCancelledListener(natsWrapper.client).listen();
+
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('Ticket service Connect to MongoDB');
+    console.log('Payment service Connect to MongoDB');
   } catch (err) {
-    console.error('Ticket service Mongo err: ', err);
+    console.error('Payment service Mongo err: ', err);
   }
 
   app.listen(3000, () => {
-    console.log('Ticket service Listening on port 3000');
+    console.log('Payment service Listening on port 3000');
   });
 };
 
