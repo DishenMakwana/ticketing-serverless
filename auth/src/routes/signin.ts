@@ -3,7 +3,7 @@ import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../models/user';
-import { validateRequest,BadRequestError } from '@dishen/common';
+import { validateRequest, BadRequestError } from '@dishen/common';
 import { Password } from '../services/password';
 
 const router = express.Router();
@@ -19,18 +19,16 @@ router.post(
     const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
-
-    if (existingUser) {
+    if (!existingUser) {
       throw new BadRequestError('Invalid credentials');
     }
 
-    const passwordMatch = await Password.compare(
-      existingUser!.password,
+    const passwordsMatch = await Password.compare(
+      existingUser.password,
       password
     );
-
-    if (!passwordMatch) {
-      throw new BadRequestError('Invalid credentials');
+    if (!passwordsMatch) {
+      throw new BadRequestError('Invalid Credentials');
     }
 
     // Generate JWT
