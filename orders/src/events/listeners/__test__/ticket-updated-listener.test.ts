@@ -33,11 +33,11 @@ const setup = async () => {
 };
 
 it('finds, creates, and saves a ticket', async () => {
-  const { listener, data, msg } = await setup();
+  const { listener, data, msg, ticket } = await setup();
 
   await listener.onMessage(data, msg);
 
-  const updatedTicket = await Ticket.findById(data.id);
+  const updatedTicket = await Ticket.findById(ticket.id);
 
   expect(updatedTicket!.title).toEqual(data.title);
   expect(updatedTicket!.price).toEqual(data.price);
