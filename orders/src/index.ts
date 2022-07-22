@@ -49,7 +49,7 @@ const start = async () => {
     new PaymentCreatedListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('Order service Connected to MongoDb');
+    console.log('Order service Connected to MongoDB');
   } catch (err) {
     console.error('Order service Mongo err: ', err);
   }
