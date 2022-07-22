@@ -44,7 +44,7 @@ it('return a 400 when purchasing a cancelled order', async () => {
 
   const order = Order.build({
     id: new mongoose.Types.ObjectId().toHexString(),
-    userId: new mongoose.Types.ObjectId().toHexString(),
+    userId,
     version: 0,
     price: 20,
     status: OrderStatus.Cancelled,
@@ -67,7 +67,7 @@ it('returns a 201 with valid inputs', async () => {
 
   const order = Order.build({
     id: new mongoose.Types.ObjectId().toHexString(),
-    userId: new mongoose.Types.ObjectId().toHexString(),
+    userId,
     version: 0,
     price,
     status: OrderStatus.Created,
