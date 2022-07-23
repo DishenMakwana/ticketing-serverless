@@ -1,9 +1,5 @@
 import express, { Request, Response } from 'express';
-import {
-  requireAuth,
-  NotFoundError,
-  NotAuthorizedError,
-} from '@dishen/common';
+import { requireAuth, NotFoundError, NotAuthorizedError } from '@dishen/common';
 import { Order } from '../models/order';
 
 const router = express.Router();
