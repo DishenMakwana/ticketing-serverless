@@ -1,5 +1,5 @@
-export class stripe = {
-    charges: {
-        create: jest.fn().mockReturnValue({})
-    }
+export const stripe = {
+  charges: {
+    create: jest.fn().mockResolvedValue({}),
+  },
 };
